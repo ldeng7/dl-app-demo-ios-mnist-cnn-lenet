@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D2710C1204ECC49008A09D4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2710C0204ECC49008A09D4 /* Network.swift */; };
 		9DCCE983204430BF008B2A6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DCCE982204430BF008B2A6B /* Assets.xcassets */; };
 		9DCCE98E2044324A008B2A6B /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 9DCCE98D2044324A008B2A6B /* Assets */; };
 		9DCCE991204433AD008B2A6B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DCCE990204433AD008B2A6B /* Accelerate.framework */; };
 		9DCCE99520443402008B2A6B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCCE99220443402008B2A6B /* MainViewController.swift */; };
 		9DCCE99620443402008B2A6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCCE99320443402008B2A6B /* AppDelegate.swift */; };
-		9DCCE9992044341F008B2A6B /* CNN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCCE9982044341F008B2A6B /* CNN.swift */; };
 		9DCCE9A22044353C008B2A6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DCCE99E2044353C008B2A6B /* LaunchScreen.storyboard */; };
 		9DCCE9A32044353C008B2A6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DCCE9A02044353C008B2A6B /* Main.storyboard */; };
+		9DD96026205EB93A004189E7 /* Lenet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD96025205EB93A004189E7 /* Lenet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D2710C0204ECC49008A09D4 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		9DCCE978204430BF008B2A6B /* dl-app-demo-ios-mnist-cnn-lenet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dl-app-demo-ios-mnist-cnn-lenet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DCCE982204430BF008B2A6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DCCE987204430BF008B2A6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -25,9 +27,9 @@
 		9DCCE990204433AD008B2A6B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		9DCCE99220443402008B2A6B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9DCCE99320443402008B2A6B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9DCCE9982044341F008B2A6B /* CNN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNN.swift; sourceTree = "<group>"; };
 		9DCCE99F2044353C008B2A6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9DCCE9A12044353C008B2A6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9DD96025205EB93A004189E7 /* Lenet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lenet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +70,8 @@
 				9DCCE9A02044353C008B2A6B /* Main.storyboard */,
 				9DCCE99320443402008B2A6B /* AppDelegate.swift */,
 				9DCCE99220443402008B2A6B /* MainViewController.swift */,
-				9DCCE9982044341F008B2A6B /* CNN.swift */,
+				9D2710C0204ECC49008A09D4 /* Network.swift */,
+				9DD96025205EB93A004189E7 /* Lenet.swift */,
 				9DCCE987204430BF008B2A6B /* Info.plist */,
 			);
 			path = "dl-app-demo-ios-mnist-cnn-lenet";
@@ -158,7 +161,8 @@
 			files = (
 				9DCCE99620443402008B2A6B /* AppDelegate.swift in Sources */,
 				9DCCE99520443402008B2A6B /* MainViewController.swift in Sources */,
-				9DCCE9992044341F008B2A6B /* CNN.swift in Sources */,
+				9DD96026205EB93A004189E7 /* Lenet.swift in Sources */,
+				9D2710C1204ECC49008A09D4 /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

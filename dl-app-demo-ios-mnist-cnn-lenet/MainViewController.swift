@@ -8,7 +8,7 @@ class MnistCanvasView: UIView {
     var gridSize: CGFloat!
 
     func onInit() {
-        self.values = Array<Float>.init(repeating: 0, count: MnistCanvasView.SIZE * MnistCanvasView.SIZE)
+        self.values = [Float].init(repeating: 0, count: MnistCanvasView.SIZE * MnistCanvasView.SIZE)
         self.gridSize = self.frame.width / CGFloat(MnistCanvasView.SIZE)
     }
 
@@ -73,7 +73,7 @@ class MainViewController: UIViewController {
     }
 
     @IBAction func onButtonRun(_ sender: UIButton) {
-        let out = CNN.getInstance().infer(self.canvas.values)
+        let out = Lenet.getInstance().infer(self.canvas.values)
         for label in self.labels {
             label.text = String(out[label.tag])
         }
