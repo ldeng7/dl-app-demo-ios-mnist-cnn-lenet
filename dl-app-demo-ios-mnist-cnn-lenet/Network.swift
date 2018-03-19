@@ -53,8 +53,26 @@ public class Network {
     private var inputs: [NetworkLayer] = []
     private var layers: [NetworkLayer] = []
     private var levels: [[NetworkLayer]] = []
+    private var varsBuf: Data!
+    private var varsOffset = 0
 
     public init() {}
+
+    private func readVars(count: Int) -> [Float] {
+        var arr = [Float](repeating: 0, count: count)
+        let varsOffsetNext = self.varsOffset + MemoryLayout<Float>.size * count
+        _ = self.varsBuf.copyBytes(
+            to: UnsafeMutableBufferPointer(start: UnsafeMutablePointer(&arr), count: count),
+            from: self.varsOffset ..<  varsOffsetNext
+        )
+        self.varsOffset = varsOffsetNext
+        return arr
+    }
+
+    public func loadModel(fromAsset asset: String) {
+        let path = Bundle.main.path(forResource: asset, ofType: "dat")
+        self.varsBuf = try! Data(contentsOf: URL(fileURLWithPath: path!))
+    }
 
     public func addInputLayer(shape: [Int]) -> NetworkLayer {
         let l = InputLayer()
@@ -65,8 +83,7 @@ public class Network {
         return l
     }
 
-    public func addFCLayer(precedor: NetworkLayer, szOut: Int, relu: Bool,
-            weight: [Float], bias: [Float]) -> NetworkLayer {
+    public func addFCLayer(precedor: NetworkLayer, szOut: Int, relu: Bool) -> NetworkLayer {
         let l = NetworkLayer()
         self.layers.append(l)
         precedor.successors.append(l)
@@ -78,10 +95,17 @@ public class Network {
         var layerDesc = BNNSFullyConnectedLayerParameters(
             in_size: szIn,
             out_size: szOut,
-            weights: BNNSLayerData(data: weight, data_type: BNNSDataType.float),
-            bias: BNNSLayerData(data: bias, data_type: BNNSDataType.float),
-            activation: BNNSActivation(function: relu ?
-                BNNSActivationFunction.rectifiedLinear : BNNSActivationFunction.identity)
+            weights: BNNSLayerData(
+                data: self.readVars(count: szIn * szOut),
+                data_type: BNNSDataType.float
+            ),
+            bias: BNNSLayerData(
+                data: self.readVars(count: szOut),
+                data_type: BNNSDataType.float
+            ),
+            activation: BNNSActivation(
+                function: relu ? BNNSActivationFunction.rectifiedLinear : BNNSActivationFunction.identity
+            )
         )
 
         l.filter = BNNSFilterCreateFullyConnectedLayer(&inDesc, &outDesc, &layerDesc, nil)
@@ -108,8 +132,7 @@ public class Network {
         return (o: Int(fo), p: p)
     }
 
-    public func addConvLayer(precedor: NetworkLayer, kh: Int, kw: Int, dOut: Int, s: Int,
-            pad: Bool, weight: [Float], bias: [Float],
+    public func addConvLayer(precedor: NetworkLayer, kh: Int, kw: Int, dOut: Int, s: Int, pad: Bool,
             act: BNNSActivationFunction = BNNSActivationFunction.rectifiedLinear) -> NetworkLayer {
         let l = NetworkLayer()
         self.layers.append(l)
@@ -147,8 +170,14 @@ public class Network {
             k_height: kh,
             in_channels: dIn,
             out_channels: dOut,
-            weights: BNNSLayerData(data: weight, data_type: BNNSDataType.float),
-            bias: BNNSLayerData(data: bias, data_type: BNNSDataType.float),
+            weights: BNNSLayerData(
+                data: self.readVars(count: kw * kh * dIn * dOut),
+                data_type: BNNSDataType.float
+            ),
+            bias: BNNSLayerData(
+                data: self.readVars(count: dOut),
+                data_type: BNNSDataType.float
+            ),
             activation: BNNSActivation(function: act)
         )
 
